@@ -52,11 +52,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "input.txt"
+            argument = "/Users/kyledecot/Desktop/input.txt"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "barcode.png"
+            argument = "/Users/kyledecot/Desktop/kyledecot-barcode.png"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

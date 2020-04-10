@@ -10,11 +10,9 @@ class CLI {
     }
 
     func run(callback: (Bool) -> Void) {
-        let desktop = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first
-        let inputURL = desktop?.appendingPathComponent(self.arguments[1])
-        let outputURL = desktop?.appendingPathComponent(self.arguments[2])
-        let data = try! NSString(contentsOf: inputURL!, encoding: String.Encoding.utf8.rawValue).data(using: String.Encoding.ascii.rawValue)!
-
+        let inputURL =  URL(fileURLWithPath: self.arguments[1])
+        let outputURL = URL(fileURLWithPath: self.arguments[2])
+        let data = try! Data(contentsOf: inputURL)
         let barcode = Barcode(data: data)
 
         guard let image = barcode.nsImage(width: 500, height: 100) else {
@@ -23,7 +21,7 @@ class CLI {
         }
 
         do {
-            try write(image: image, path: outputURL!)
+            try write(image: image, path: outputURL)
         } catch {
             callback(false)
             return
