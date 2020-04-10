@@ -3,20 +3,20 @@ import Foundation
 let dispatchGroup = DispatchGroup()
 let cli = CLI(arguments: CommandLine.arguments)
 
+var exitCode = EXIT_FAILURE
+
 dispatchGroup.enter()
 
-cli.run() { success in
+cli.run { success in
     if (success) {
-        print("SUCCESSFUL")
-    } else {
-        print("UNSUCCESSFUL")
+        exitCode = EXIT_SUCCESS
     }
-    
+
     dispatchGroup.leave()
 }
 
 dispatchGroup.notify(queue: DispatchQueue.main) {
-    exit(EXIT_SUCCESS)
+    exit(exitCode)
 }
 
 dispatchMain()
