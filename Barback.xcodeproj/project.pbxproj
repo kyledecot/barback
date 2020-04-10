@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		FCE6CF3A2440EE09004BFFAF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE6CF392440EE09004BFFAF /* main.swift */; };
+		FCE6CF412440EE37004BFFAF /* Barcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE6CF402440EE37004BFFAF /* Barcode.swift */; };
+		FCE6CF432440EE42004BFFAF /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE6CF422440EE42004BFFAF /* CLI.swift */; };
+		FCE6CF462440EE4F004BFFAF /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE6CF452440EE4F004BFFAF /* CoreImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +26,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FCE6CF362440EE09004BFFAF /* Barback */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Barback; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCE6CF362440EE09004BFFAF /* barback */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = barback; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCE6CF392440EE09004BFFAF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		FCE6CF402440EE37004BFFAF /* Barcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Barcode.swift; sourceTree = "<group>"; };
+		FCE6CF422440EE42004BFFAF /* CLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
+		FCE6CF452440EE4F004BFFAF /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCE6CF462440EE4F004BFFAF /* CoreImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,13 +50,14 @@
 			children = (
 				FCE6CF382440EE09004BFFAF /* Barback */,
 				FCE6CF372440EE09004BFFAF /* Products */,
+				FCE6CF442440EE4F004BFFAF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		FCE6CF372440EE09004BFFAF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FCE6CF362440EE09004BFFAF /* Barback */,
+				FCE6CF362440EE09004BFFAF /* barback */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,16 +66,26 @@
 			isa = PBXGroup;
 			children = (
 				FCE6CF392440EE09004BFFAF /* main.swift */,
+				FCE6CF402440EE37004BFFAF /* Barcode.swift */,
+				FCE6CF422440EE42004BFFAF /* CLI.swift */,
 			);
 			path = Barback;
+			sourceTree = "<group>";
+		};
+		FCE6CF442440EE4F004BFFAF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCE6CF452440EE4F004BFFAF /* CoreImage.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FCE6CF352440EE09004BFFAF /* Barback */ = {
+		FCE6CF352440EE09004BFFAF /* barback */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FCE6CF3D2440EE09004BFFAF /* Build configuration list for PBXNativeTarget "Barback" */;
+			buildConfigurationList = FCE6CF3D2440EE09004BFFAF /* Build configuration list for PBXNativeTarget "barback" */;
 			buildPhases = (
 				FCE6CF322440EE09004BFFAF /* Sources */,
 				FCE6CF332440EE09004BFFAF /* Frameworks */,
@@ -77,9 +95,9 @@
 			);
 			dependencies = (
 			);
-			name = Barback;
+			name = barback;
 			productName = Barback;
-			productReference = FCE6CF362440EE09004BFFAF /* Barback */;
+			productReference = FCE6CF362440EE09004BFFAF /* barback */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -110,7 +128,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FCE6CF352440EE09004BFFAF /* Barback */,
+				FCE6CF352440EE09004BFFAF /* barback */,
 			);
 		};
 /* End PBXProject section */
@@ -120,7 +138,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCE6CF412440EE37004BFFAF /* Barcode.swift in Sources */,
 				FCE6CF3A2440EE09004BFFAF /* main.swift in Sources */,
+				FCE6CF432440EE42004BFFAF /* CLI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +294,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FCE6CF3D2440EE09004BFFAF /* Build configuration list for PBXNativeTarget "Barback" */ = {
+		FCE6CF3D2440EE09004BFFAF /* Build configuration list for PBXNativeTarget "barback" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FCE6CF3E2440EE09004BFFAF /* Debug */,

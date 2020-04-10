@@ -1,12 +1,22 @@
-//
-//  main.swift
-//  Barback
-//
-//  Created by Kyle Decot on 4/10/20.
-//  Copyright © 2020 Kyle Decot. All rights reserved.
-//
-
 import Foundation
 
-print("Hello, World!")
+let dispatchGroup = DispatchGroup()
+let cli = CLI(arguments: CommandLine.arguments)
 
+dispatchGroup.enter()
+
+cli.run() { success in
+    if (success) {
+        print("SUCCESSFUL")
+    } else {
+        print("UNSUCCESSFUL")
+    }
+    
+    dispatchGroup.leave()
+}
+
+dispatchGroup.notify(queue: DispatchQueue.main) {
+    exit(EXIT_SUCCESS)
+}
+
+dispatchMain()
