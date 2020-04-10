@@ -25,4 +25,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: barback
-          path: /Users/runner/runners/2.168.0/work/barback/barback/build/Release/barback
+        path: build/Release/barback
