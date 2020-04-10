@@ -36,14 +36,4 @@ class Barcode {
     init(data: Data) {
         self.data = data
     }
-    
-    func convertCIImageToCGImage(inputImage: CIImage) -> CGImage? {
-        let context = CIContext(options: nil)
-        
-        if let cgImage = context.createCGImage(inputImage, from: inputImage.extent) {
-            return cgImage
-        }
-        
-        return nil
-    }
 }
