@@ -1,0 +1,54 @@
+---
+name: Default
+
+on:
+  push:
+
+jobs:
+  build:
+		name: "Build"
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Import Code-Signing Certificates
+      uses: Apple-Actions/import-codesign-certs@v1
+      with: 
+        p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
+        p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+
+    - name: Build
+      run: xcodebuild
+    - name: Upload Binary
+      uses: actions/upload-artifact@v1
+      with:
+        name: barback
+        path: build/Release/barback
+
+  release:
+    name: Release
+		if: ${{ startsWith(github.ref, 'v') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+			- name: Upload Release Asset
+				id: upload-release-asset 
+				uses: actions/upload-release-asset@v1
+				env:
+					GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+				with:
+				upload_url: ${{ steps.create_release.outputs.upload_url }}
+				asset_path: ./my-artifact.zip
+				asset_name: my-artifact.zip
+				asset_content_type: application/zip
