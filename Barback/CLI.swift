@@ -12,7 +12,15 @@ class CLI {
     func run(callback: (Bool) -> Void) {
         let inputURL =  URL(fileURLWithPath: self.arguments[1])
         let outputURL = URL(fileURLWithPath: self.arguments[2])
-        let data = try! Data(contentsOf: inputURL)
+        let data: Data
+
+        do {
+          data = try Data(contentsOf: inputURL)
+        } catch {
+          callback(false)
+          return
+        }
+
         let barcode = Barcode(data: data)
 
         guard let image = barcode.nsImage(width: 500, height: 100) else {

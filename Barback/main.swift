@@ -8,7 +8,7 @@ var exitCode = EXIT_FAILURE
 dispatchGroup.enter()
 
 cli.run { success in
-    if (success) {
+    if success {
         exitCode = EXIT_SUCCESS
     }
 
