@@ -5,8 +5,8 @@ on:
   push:
 
 jobs:
-  build:
-    name: "Build"
+  default:
+    name: Default
     runs-on: macos-latest
 
     steps:
@@ -17,41 +17,26 @@ jobs:
         p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
         p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
 
-    - name: Build
+    - name: Build Executable
       run: xcodebuild
-    - name: Upload Binary
-      uses: actions/upload-artifact@v1
-      with:
-        name: barback
-        path: build/Release/barback
 
-  release:
-    name: Release
-    if: ${{ startsWith(github.ref, 'v') }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-          
-      - uses: actions/download-artifact@v1
-        with:
-          name: barback
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./barback.zip
-          asset_name: barback.zip
-          asset_content_type: application/zip
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@latest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: build/Release/barback
+        asset_name: barback
+        asset_content_type: application/binary
