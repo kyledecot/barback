@@ -19,12 +19,15 @@ jobs:
 
     - name: Build Executable
       run: xcodebuild
+    
+    - name: Zip Executable
+      run: zip -r barback.zip build/Release/barback
       
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
       with:
-        name: barback
-        path: build/Release/barback
+        name: barback.zip
+        path: barback.zip
 
     - name: Create Release
       if: ${{ startsWith(github.ref, 'refs/tags/v') }}
