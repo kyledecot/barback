@@ -23,25 +23,29 @@ class CLI {
 
         let barcode = Barcode(data: data)
 
-        guard let image = barcode.nsImage(width: 500, height: 100) else {
+        guard let image = barcode.ciImage else {
             callback(false)
             return
         }
 
-        do {
-            try write(image: image, path: outputURL)
-        } catch {
-            callback(false)
-            return
+        let context = CIContext(options: nil)
+        var result: Bool = false
+        if let colorSpace = CGColorSpace(name: CGColorSpace.sRGB) {
+
+            do {
+                let format = CIFormat.RGBA8
+
+                try context.writePNGRepresentation(of: image, to: outputURL, format: format, colorSpace: colorSpace)
+
+                result = true
+
+            } catch {
+                result = false
+            }
+        } else {
+            result = false
         }
 
-        callback(true)
-    }
-
-    private func write(image: NSImage, path: URL) throws {
-        let imageRep = NSBitmapImageRep(data: image.tiffRepresentation!)
-        let pngData = imageRep?.representation(using: NSBitmapImageRep.FileType.png, properties: [:])
-
-        try pngData!.write(to: path)
+        callback(result)
     }
 }
