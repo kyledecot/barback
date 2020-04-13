@@ -21,7 +21,7 @@ jobs:
       run: xcodebuild
     
     - name: Zip Executable
-      run: zip -r barback.zip build/Release/barback
+      run: zip -j -r barback.zip build/Release/*
       
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
