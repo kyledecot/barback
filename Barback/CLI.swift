@@ -22,30 +22,19 @@ class CLI {
         }
 
         let barcode = Barcode(data: data)
-
-        guard let image = barcode.ciImage else {
-            callback(false)
-            return
-        }
-
         let context = CIContext(options: nil)
-        var result: Bool = false
-        if let colorSpace = CGColorSpace(name: CGColorSpace.sRGB) {
 
+        if let image = barcode.ciImage, let colorSpace = CGColorSpace(name: CGColorSpace.sRGB) {
             do {
                 let format = CIFormat.RGBA8
 
                 try context.writePNGRepresentation(of: image, to: outputURL, format: format, colorSpace: colorSpace)
 
-                result = true
-
-            } catch {
-                result = false
-            }
-        } else {
-            result = false
+                callback(true)
+                return
+            } catch {}
         }
 
-        callback(result)
+        callback(false)
     }
 }
