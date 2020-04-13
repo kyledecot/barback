@@ -26,7 +26,7 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
       with:
-        name: barback.zip
+        name: barback
         path: barback.zip
 
     - name: Create Release
