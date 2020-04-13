@@ -1,4 +1,6 @@
-# Barback :beer:
+# Barback :beer: :cocktail:
+
+![Default](https://github.com/kyledecot/barback/workflows/Default/badge.svg?branch=master)
 
 A MacOS CLI for Converting Strings into Barcodes
 
